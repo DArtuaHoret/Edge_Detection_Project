@@ -1,0 +1,16 @@
+# Blender MTL File: 'Bench_4.blend'
+# Material Count: 1
+
+newmtl Bench_4_Material
+Ns 225.000000
+Ka 1.000000 1.000000 1.000000
+Kd 0.800000 0.800000 0.800000
+Ks 0.327273 0.327273 0.327273
+Ke 0.000000 0.000000 0.000000
+Ni 1.450000
+d 1.000000
+illum 2
+map_Bump Bench_4_Material_Normal_OpenGL.png
+map_Kd Bench_4_Material_Base_Color.png
+map_Ns Bench_4_Material_Roughness.png
+refl Bench_4_Material_Metallic.png

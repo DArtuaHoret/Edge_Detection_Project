@@ -1,0 +1,18 @@
+# Blender 5.1.0 MTL File: 'triple_recycling_bin.blend'
+# www.blender.org
+
+newmtl m_triple_recycling_bin
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+Ps 0.000000
+Pc 0.000000
+Pcr 0.030000
+aniso 0.000000
+anisor 0.000000
+map_Kd m_triple_recycling_bin_BaseColor_2K.png
+map_Pm m_triple_recycling_bin_Metallic_2K.png
+map_Pr m_triple_recycling_bin_Roughness_2K.png
+map_Bump -bm 1.000000 m_triple_recycling_bin_Normal_2K.png

@@ -1,0 +1,25 @@
+# Blender 4.1.1 MTL File: 'CCIDOOR2.blend'
+# www.blender.org
+
+newmtl door_metal
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 3
+map_Kd ccodoor01_door_metal_BaseColor.png
+map_Ns ccodoor01_door_metal_Roughness.png
+map_refl ccodoor01_door_metal_Metallic.png
+map_Bump -bm 1.000000 ccodoor01_door_metal_Normal.png
+
+newmtl door_wood05
+Ka 1.000000 1.000000 1.000000
+Kd 0.800378 0.362104 0.160174
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Ns ccodoor01_door_wood05_Roughness.png
+map_Bump -bm 1.000000 ccodoor01_door_wood05_Normal.png

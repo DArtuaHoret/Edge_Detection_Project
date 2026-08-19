@@ -1,0 +1,26 @@
+# Blender 4.3.2 MTL File: 'u2.blend'
+# www.blender.org
+
+newmtl reyki2urna2
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd urna-reyki2urna2-BaseColor.png
+map_Ns urna-reyki2urna2-Roughness.png
+map_refl urna-reyki2urna2-Metallic.png
+map_Bump -bm 1.000000 urna-reyki2urna2-Normal.png
+
+newmtl urnabase2
+Ka 1.000000 1.000000 1.000000
+Ks 0.500000 0.500000 0.500000
+Ke 0.000000 0.000000 0.000000
+Ni 1.500000
+d 1.000000
+illum 2
+map_Kd urna-urnabase2-BaseColor.png
+map_Ns urna-urnabase2-Roughness.png
+map_refl urna-urnabase2-Metallic.png
+map_Bump -bm 1.000000 urna-urnabase2-Normal.png
