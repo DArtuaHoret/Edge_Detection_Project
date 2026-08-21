@@ -246,7 +246,14 @@ def make_fallback_cube():
     ], dtype=np.float32)
     normals = np.repeat(face_normals, 4, axis=0)
 
-    indices = np.array(indices, dtype=np.uint32)
+    indices = np.array([
+         0,  1,  2,   2,  3,  0,  
+         4,  5,  6,   6,  7,  4,  
+         8,  9, 10,  10, 11,  8,  
+        12, 13, 14,  14, 15, 12,  
+        16, 17, 18,  18, 19, 16,  
+        20, 21, 22,  22, 23, 20,  
+    ], dtype=np.uint32)
     uvs = np.zeros((24, 2), dtype=np.float32)
 
     mesh = Mesh()
