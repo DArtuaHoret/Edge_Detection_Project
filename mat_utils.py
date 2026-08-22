@@ -6,8 +6,8 @@ import math
 
 
 def perspective(fov_deg, aspect, near, far):
-    """Macierz projekcji perspektywicznej. przyjmuje pionowy kąt widzenia, proporcję ekranu, odległości near i fear.
-    rzutowanie perspektywiczne"""
+    """Macierz projekcji perspektywicznej. Przyjmuje pionowy kąt widzenia, proporcję ekranu, odległości near i fear.
+    rzutowanie perspektywiczne."""
     f = 1.0 / math.tan(math.radians(fov_deg) / 2.0) 
     m = np.zeros((4, 4), dtype=np.float32)
     m[0, 0] = f / aspect
@@ -20,7 +20,7 @@ def perspective(fov_deg, aspect, near, far):
 
 
 def camera_Matrix(eye, target, up):
-    """Macierz widoku """
+    """Macierz widoku."""
     f = target - eye
     f = f / np.linalg.norm(f)
     s = np.cross(f, up)
@@ -47,7 +47,7 @@ def scale_translate(s, tx, ty, tz):
 
 
 def rotate_y_neg90_scale_translate(s, tx, ty, tz):
-    """Obrot -90 st. wokol Y + skalowanie (lawka, okna, skrzynka)."""
+    """Obrót -90 stopni wokół Y + skalowanie (ławka, okna, skrzynka)."""
     return np.array([
         [0.0, 0.0, s,   tx],
         [0.0, s,   0.0, ty],
@@ -57,7 +57,7 @@ def rotate_y_neg90_scale_translate(s, tx, ty, tz):
 
 
 def rotate_y_pos90_scale_translate(s, tx, ty, tz):
-    """Obrot +90 st. wokol Y + skalowanie (kareta, drzwi)."""
+    """Obrót +90 stopni wokół Y + skalowanie (kareta, drzwi)."""
     return np.array([
         [0.0, 0.0, -s,  tx],
         [0.0, s,   0.0, ty],
