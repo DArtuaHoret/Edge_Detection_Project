@@ -1,5 +1,5 @@
 """
-Nakladka 2D GUI na scene 3D 
+Nakładka 2D GUI na scenę 3D 
 
 pygame_gui to biblioteka do rysowania na zwykłej pygame.Surface
 Okno jest jednak w trybie OPENGL gdzie nie ma normalnej powierzchni 2D do rysowania; 
@@ -53,10 +53,10 @@ class UIOverlay:
     def draw(self):
         glActiveTexture(GL_TEXTURE0)
 
-        #czyszczenie powierzchni i rysowanie przyciskow
+        # czyszczenie powierzchni i rysowanie przycisków
         self.surface.fill((0, 0, 0, 0))
         self.manager.draw_ui(self.surface)
-        #dla opengl przekazanie surface surowo - bajtowo
+        # dla OpenGL przekazanie surface surowo - bajtowo
         data = pygame.image.tostring(self.surface, "RGBA", False)
         glBindTexture(GL_TEXTURE_2D, self.texture_id)
         glTexSubImage2D(GL_TEXTURE_2D, 0, 0, 0, self.width, self.height,
@@ -76,7 +76,7 @@ class UIOverlay:
         glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA)
         glColor4f(1, 1, 1, 1)
 
-        #rysowanie prostokata
+        # rysowanie prostokąta
         glBegin(GL_QUADS)
         glTexCoord2f(0, 0); glVertex2f(0, 0)
         glTexCoord2f(1, 0); glVertex2f(self.width, 0)
