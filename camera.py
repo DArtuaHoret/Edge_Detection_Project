@@ -1,22 +1,22 @@
 """
- - W/S/A/D - ruch do przodu/tylu/w bok (wzgledem kierunku patrzenia)
- - mysz (prawa) - obrot (yaw/pitch)
- - kolko - zoom 
+ - W/S/A/D - ruch do przodu/tyłu/w bok (względem kierunku patrzenia)
+ - mysz (prawa) - obrót (yaw/pitch)
+ - kólko - zoom 
 """
 import math
 import numpy as np
 
 import mat_utils
 
-# Jesli po poruszeniu mysza w PRAWO kamera skreca w LEWO (i odwrotnie),
-# przelaczyc ta wartosc na False (albo na True, jesli jest teraz False).
+# Jeśli po poruszeniu myszą w PRAWO kamera skręca w LEWO (i odwrotnie),
+# przelączyć tą wartość na False (albo na True, jeśli jest teraz False).
 INVERT_MOUSE_X = False
 
 class Camera:
     def __init__(self, position=(2.0, 3.0, 8.0)):
         self.position = np.array(position, dtype=np.float32)
 
-        self.yaw = -90.0  #patrzymy w strone -Z na starcie
+        self.yaw = -90.0  # patrzymy w stronę -Z na starcie
         self.pitch = 0.0
 
         self.world_up = np.array([0.0, 1.0, 0.0], dtype=np.float32)
@@ -74,7 +74,7 @@ class Camera:
         self.fov -= wheel_amount * self.scroll_sensitivity
         self.fov = max(self.min_fov, min(self.max_fov, self.fov))
 
-    # Zwraca macierz widoku kamery.
+    # Zwraca macierz widoku kamery
     def get_view_matrix(self):
         target = self.position + self.front
         return mat_utils.camera_Matrix(self.position, target, self.up)
