@@ -1,3 +1,6 @@
+""" Shader wierzchołków pierwszego przebiegu renderowania. Przekształca wierzchołki do przestrzeni kamery
+    oraz przygotowuje normalne powierzchni do zapisania."""
+
 #version 330 core
 
 layout(location = 0) in vec3 in_position;
@@ -13,7 +16,7 @@ void main() {
     mat4 model_view = u_view * u_model;
     vec4 view_pos = model_view * vec4(in_position, 1.0);
 
-    // normalna w przestrzeni kamery (a nie swiata)
+    // normalna w przestrzeni kamery (a nie świata)
     v_view_normal = mat3(transpose(inverse(model_view))) * in_normal;
 
     gl_Position = u_projection * view_pos;
