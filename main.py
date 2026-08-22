@@ -48,7 +48,7 @@ class App:
         pygame.display.set_mode(
             (self.screen_w, self.screen_h), DOUBLEBUF | OPENGL | RESIZABLE
         )
-        pygame.display.set_caption("Demonstrator shadera edge Detection")
+        pygame.display.set_caption("Demonstrator shadera Edge Detection")
 
         glEnable(GL_DEPTH_TEST)
         glClearColor(0.08, 0.08, 0.10, 1.0)
@@ -58,10 +58,10 @@ class App:
         self.state = STATE_MENU
         self.camera = Camera()
 
-        # Glowny obiekt sceny (scene_gotowe.obj albo wlasny .obj uzytkownika)
+        # Główny obiekt sceny (scene_gotowe.obj albo własny .obj uzytkownika)
         self.mesh = None
         self.mesh_matrix = np.identity(4, dtype=np.float32)
-        # Dodatkowe obiekty dekoracyjne domyslnej sceny: lista (mesh, model_matrix)
+        # Dodatkowe obiekty dekoracyjne domyślnej sceny: lista (mesh, model_matrix)
         self.scene_extras = []
 
         self.shader_mode = False
@@ -351,7 +351,7 @@ class App:
     def _render_menu(self):
         self.menu_ui.draw()
 
-    # na początku rysuj świat 3d, potem gui w 2d
+    # na początku rysuj świat 3d, potem GUI w 2d
     # Renderuje scenę 3D oraz interfejs użytkownika
     def _render_scene(self):
         if self.shader_mode:
@@ -395,7 +395,7 @@ class App:
                     do framebuffera (normalne + głębokość) tylko do wykrycia krawędzi.
         Przebieg 2: render ośweitlonej sceny z teksturami wprost na ekran (tak samo jak w trybie bez shadera).
         Przebieg 3: fullscreen quad (pełnoekranowy czworokąt) z shaderem Sobela, ktory czyta bufor z przebiegu 1
-                    i dorysowuje białe kreski na wierzchu"""
+                    i dorysowuje białe kreski na wierzchu."""
 
         view = self.camera.get_view_matrix()
         aspect = self.screen_w / max(self.screen_h, 1)
@@ -424,7 +424,7 @@ class App:
 
         # -- Przebieg 2: normalna, kolorowa scena -> ekran --
         # (ekran jest juz czysty - wyczyszczony na poczatku _render();
-        # Przebieg 1 rysowal do osobnego FBO, więc nie trzeba czyścić drugi raz)
+        # Przebieg 1 rysował do osobnego FBO, więc nie trzeba czyścić drugi raz)
         self._render_normal_scene()
 
         # -- Przebieg 3: nakładka Sobela (białe krawędzie) na wierzchu sceny --
