@@ -1,7 +1,7 @@
-#version 330 core
-
 """Shader wierzchołków normalnego renderowania. Przekształca wierzchołki obiektu oraz przekazuje do shadera 
-    fragmentów pozycję, normalną i współrzędne tekstury potrzebne do oświetlenia oraz teksturowania."""
+   fragmentów pozycję, normalną i współrzędne tekstury potrzebne do oświetlenia oraz teksturowania."""
+
+#version 330 core
 
 layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aNormal;
