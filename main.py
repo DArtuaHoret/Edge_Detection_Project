@@ -18,7 +18,7 @@ from shader_utils import create_shader_program
 from gui import UIOverlay
 from postprocessing import EdgeFramebuffer, FullscreenQuad
 
-#### zabronienie wypisaywanie logow do terminalu
+#### zabronienie wypisywania logów do terminalu
 import logging
 logging.getLogger("pywavefront").setLevel(logging.ERROR)
 
@@ -91,7 +91,7 @@ class App:
         self._build_menu_ui()
         self._build_scene_ui()
 
-    # ---------------------------------------------------------------- GUI --
+    # -- GUI --
     # Tworzy elementy głównego menu
     def _build_menu_ui(self):
         cx = self.screen_w // 2
@@ -146,7 +146,7 @@ class App:
         self._build_scene_ui()
 
 
-    # ---------------------------------------------------- Ladowanie sceny --
+    # -- Ładowanie sceny --
 
     # Usuwa aktualnie załadowane obiekty sceny
     def _reset_scene_objects(self):
@@ -252,7 +252,7 @@ class App:
         self.state = STATE_MENU
         self._stop_camera_look()
 
-    # -------------------------------------------------------- Petla glowna --
+    # -- Petla glówna --
     # Uruchamia główną pętlę aplikacji
     def run(self):
         running = True
@@ -336,7 +336,7 @@ class App:
             if dx != 0 or dy != 0:
                 self.camera.process_mouse(dx, dy)
 
-    # -------------------------------------------------------------- Render --
+    # -- Render --
 
     # Czyści ekran i renderuje aktualny widok
     def _render(self):
@@ -351,7 +351,7 @@ class App:
     def _render_menu(self):
         self.menu_ui.draw()
 
-    #### na poczatku rysuj swiat 3d, potem gui w 2d
+    # na początku rysuj świat 3d, potem gui w 2d
     # Renderuje scenę 3D oraz interfejs użytkownika
     def _render_scene(self):
         if self.shader_mode:
@@ -363,7 +363,7 @@ class App:
 
     # Renderuje scenę z normalnym oświetleniem i teksturami
     def _render_normal_scene(self):
-        """Zwykly podglad sceny (oswietlenie Blinna-Phonga), bezposrednio na ekran."""
+        """Zwykly podglad sceny."""
         glUseProgram(self.scene_program)
 
         view = self.camera.get_view_matrix()
@@ -390,18 +390,18 @@ class App:
 
     # Renderuje scenę w kilku etapach i nakłada wykryte krawędzie
     def _render_edge_pipeline(self):
-        """Pipeline efektu 'kreskowkowego' NAKLADANEGO na normalną scenę:
-        Pass 1: render całej sceny (glowny mesh + wszystkie dodatki)
-                do framebuffera (normalne + glebokosc) tylko do wykrycia krawedzi.
-        Pass 2: render ośweitlonej sceny z teksturami wprost na ekran (tak samo jak w trybie bez shadera).
-        Pass 3: fullscreen quad z shaderem Sobela, ktory czyta bufor z Pass 1
-                i dorysowuje białe kreski na wierzchu"""
+        """Pipeline efektu 'kreskówkowego' nakładanego na normalną scenę:
+        Przebieg 1: render całej sceny (glowny mesh + wszystkie dodatki)
+                    do framebuffera (normalne + głębokość) tylko do wykrycia krawędzi.
+        Przebieg 2: render ośweitlonej sceny z teksturami wprost na ekran (tak samo jak w trybie bez shadera).
+        Przebieg 3: fullscreen quad (pełnoekranowy czworokąt) z shaderem Sobela, ktory czyta bufor z przebiegu 1
+                    i dorysowuje białe kreski na wierzchu"""
 
         view = self.camera.get_view_matrix()
         aspect = self.screen_w / max(self.screen_h, 1)
         projection = mat_utils.perspective(self.camera.fov, aspect, self.camera_near, self.camera_far)
 
-        # --- Pass 1: geometria -> framebuffer (tylko do wykrywania krawedzi) ---
+        # -- Przebieg 1: geometria -> framebuffer (tylko do wykrywania krawędzi) --
         self.edge_fbo.bind_for_writing()
         glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT)
 
@@ -413,8 +413,8 @@ class App:
             self._set_matrix(self.geometry_program, "u_model", self.mesh_matrix)
             self.mesh.draw()
 
-        # WAZNE: wszystkie dodatkowe obiekty rysowane TUTAJ, przed unbind() -
-        # inaczej trafiaja mimo wszystko na ekran zamiast do bufora.
+        # WAŻNE: wszystkie dodatkowe obiekty rysowane TUTAJ, przed unbind() -
+        # inaczej trafiają mimo wszystko na ekran zamiast do bufora
         for extra_mesh, model_matrix in self.scene_extras:
             self._set_matrix(self.geometry_program, "u_model", model_matrix)
             extra_mesh.draw()
@@ -422,12 +422,12 @@ class App:
         glUseProgram(0)
         self.edge_fbo.unbind(self.screen_w, self.screen_h)
 
-        # --- Pass 2: normalna, kolorowa scena -> ekran ---
+        # -- Przebieg 2: normalna, kolorowa scena -> ekran --
         # (ekran jest juz czysty - wyczyszczony na poczatku _render();
-        # Pass 1 rysowal do osobnego FBO, wiec nie trzeba czyscic drugi raz)
+        # Przebieg 1 rysowal do osobnego FBO, więc nie trzeba czyścić drugi raz)
         self._render_normal_scene()
 
-        # --- Pass 3: nakladka Sobela (biale krawedzie) na wierzchu sceny ---
+        # -- Przebieg 3: nakładka Sobela (białe krawędzie) na wierzchu sceny --
         glUseProgram(self.edge_program)
 
         self.edge_fbo.bind_textures(normal_unit=0, depth_unit=1)
@@ -446,7 +446,7 @@ class App:
         glUniform1f(glGetUniformLocation(self.edge_program, "u_near"), self.camera_near)
         glUniform1f(glGetUniformLocation(self.edge_program, "u_far"), self.camera_far)
 
-        # krawedz (alpha=1) nadpisuje scene, reszta (alpha=0)
+        # krawędź (alpha=1) nadpisuje scenę, reszta (alpha=0)
         # zostaje przezroczysta i przepuszcza to, co juz jest na ekranie
         glDisable(GL_DEPTH_TEST)
         glEnable(GL_BLEND)
