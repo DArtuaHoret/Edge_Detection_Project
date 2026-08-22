@@ -18,7 +18,7 @@ out vec2 v_TexCoord;
 void main() {
     gl_Position = u_projection * u_view * u_model * vec4(aPos, 1.0);
 
-    //polozeia wierzcholka w swiecie (nie w kamerze)
+    // położenia wierzchołka w świecie (nie w kamerze)
     v_FragPos = vec3(u_model * vec4(aPos, 1.0));  
 
     v_Normal = mat3(transpose(inverse(u_model))) * aNormal;
