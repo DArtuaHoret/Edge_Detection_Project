@@ -7,7 +7,7 @@ from PIL import Image
 import os
 
 
-#Klasa będąca obiektowym opakowaniem dla tekstury w systemie OpenGL
+# Klasa będąca obiektowym opakowaniem dla tekstury w systemie OpenGL
 class Texture:
     def __init__(self, path):
         self.texture_id = None
@@ -16,7 +16,7 @@ class Texture:
         if path and os.path.exists(path):
             self._load(path)
     
-    #Wczytuje plik graficzny (PNG/JPG) i inicjalizuje go jako teksturę
+    # Wczytuje plik graficzny (PNG/JPG) i inicjalizuje go jako teksturę
     def _load(self, path):
         try:
             img = Image.open(path)
@@ -50,14 +50,14 @@ class Texture:
             print(f"Nie udalo sie zaladowac tekstury {path}: {e}")
             self.texture_id = None
     
-    #Aktywuje i podłącza teksturę do wybranego obiektu bezpośrednio przed renderowaniem
+    # Aktywuje i podłącza teksturę do wybranego obiektu bezpośrednio przed renderowaniem
     def bind(self, unit=0):
         if self.texture_id:
             glActiveTexture(GL_TEXTURE0 + unit)
             glBindTexture(GL_TEXTURE_2D, self.texture_id)
 
 
-#Klasa definiująca właściwości wizualne powierzchni obiektu 3D
+# Klasa definiująca właściwości wizualne powierzchni obiektu 3D
 class Material:
     def __init__(self, name):
         self.name = name
@@ -65,18 +65,18 @@ class Material:
         self.texture = None
         self.use_texture = False
     
-    #Ustawia podstawowy kolor dyfuzyjny materiału, zdefiniowany w formacie RGB
+    # Ustawia podstawowy kolor dyfuzyjny materiału, zdefiniowany w formacie RGB
     def set_color(self, r, g, b):
         self.color = np.array([r, g, b], dtype=np.float32)
     
-    #Przypisuje obiekt tekstury do danego materiału i ustawia flagę informującą shader o konieczności jej użycia
+    # Przypisuje obiekt tekstury do danego materiału i ustawia flagę informującą shader o konieczności jej użycia
     def set_texture(self, texture):
         if isinstance(texture, Texture) and texture.texture_id:
             self.texture = texture
             self.use_texture = True
 
 
-#Reprezentuje spójny fragment siatki geometrycznej (modelu), który współdzieli dokładnie jeden materiał
+# Reprezentuje spójny fragment siatki geometrycznej (modelu), który współdzieli dokładnie jeden materiał
 class SubMesh:
     def __init__(self, vertices, normals, uvs, indices, material=None):
         self.vertex_count = len(indices)
@@ -109,7 +109,7 @@ class SubMesh:
         
         glBindVertexArray(0)
 
-    #Wysyła żądanie renderowania geometrii do OpenGL na podstawie powiązanych buforów
+    # Wysyła żądanie renderowania geometrii do OpenGL na podstawie powiązanych buforów
     def draw(self):
         if not self.material:
             return
@@ -118,21 +118,21 @@ class SubMesh:
         glBindVertexArray(0)
 
 
-#Główny kontener reprezentujący kompletny model trójwymiarowy
+# Główny kontener reprezentujący kompletny model trójwymiarowy
 class Mesh:
     def __init__(self):
         self.submeshes = []
     
-    #Dodaje nowy fragment geometrii do globalnej listy submeshów wchodzących w skład całego modelu
+    # Dodaje nowy fragment geometrii do globalnej listy submeshów wchodzących w skład całego modelu
     def add_submesh(self, submesh):
         self.submeshes.append(submesh)
     
-    #Renderuje wszystkie submeshe modelu sekwencyjnie
+    # Renderuje wszystkie submeshe modelu sekwencyjnie
     def draw(self):
         for submesh in self.submeshes:
             submesh.draw()
     
-    #Renderuje wszystkie submeshe, uprzednio przesyłając do shadera właściwości materiału (kolor oraz teksturę) przypisanego do konkretnego fragmentu modelu
+    # Renderuje wszystkie submeshe, uprzednio przesyłając do shadera właściwości materiału (kolor oraz teksturę) przypisanego do konkretnego fragmentu modelu
     def draw_with_material_setup(self, shader_program):
         for submesh in self.submeshes:
             
@@ -150,7 +150,7 @@ class Mesh:
             
             submesh.draw()
 
-#Oblicza uśrednione wektory normalne dla każdego wierzchołka
+# Oblicza uśrednione wektory normalne dla każdego wierzchołka
 def compute_smooth_normals(vertices, indices):
     normals = np.zeros_like(vertices)
     tris = indices.reshape(-1, 3)
@@ -166,7 +166,7 @@ def compute_smooth_normals(vertices, indices):
     normals = normals / lengths[:, None]
     return normals
 
-#    Główna funkcja ładująca. Parsuje plik .obj oraz powiązane pliki materiałów .mtl, przekształca dane wierzchołków i rozdziela geometrię na poszczególne obiekty SubMesh ze skonfigurowanymi materiałami
+# Główna funkcja ładująca. Parsuje plik .obj oraz powiązane pliki materiałów .mtl, przekształca dane wierzchołków i rozdziela geometrię na poszczególne obiekty SubMesh ze skonfigurowanymi materiałami
 def load_obj_with_materials(obj_path, mtl_dir=None):
     import pywavefront
     import os
@@ -224,7 +224,7 @@ def load_obj_with_materials(obj_path, mtl_dir=None):
 
     return mesh
 
-#Generuje prosty sześcian. Służy jako mechanizm awaryjny w przypadku niepowodzenia ładowania modelu z pliku zewnętrznego
+# Generuje prosty sześcian. Służy jako mechanizm awaryjny w przypadku niepowodzenia ładowania modelu z pliku zewnętrznego
 def make_fallback_cube():
     positions = np.array([
         # przód (+Z)
