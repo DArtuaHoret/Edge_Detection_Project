@@ -1,3 +1,5 @@
+""" Shader fragmentów pierwszego przebiegu renderowania. Zapisuje znormalizowane normalne do tekstury. """
+
 #version 330 core
 
 in vec3 v_view_normal;
