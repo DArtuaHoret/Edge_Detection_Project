@@ -1,3 +1,5 @@
+""" Shader fragmentów normalnego renderowania. Implementuje tekstury oraz oblicza oświetlenie. """
+
 #version 330 core
 in vec3 v_Normal;
 in vec3 v_FragPos;
@@ -37,14 +39,14 @@ void main() {
 
     float ambient = 0.3;
 
-    //normalizacja, bo normalne 10 i 1 patrza w te sama strone
+    // normalizacja, bo normalne 10 i 1 patrzą w te sama strone
     vec3 norm = normalize(v_Normal);
 
-    //pozycja zrodla swaitla 
+    // pozycja źródła śwaitła 
     vec3 lightDir = normalize(-u_light_dir);
     float diff = max(dot(norm, lightDir), 0.0);
     
-    //pozycja obserwatora
+    // pozycja obserwatora
     vec3 viewDir = normalize(u_view_pos - v_FragPos);
     vec3 halfwayDir = normalize(lightDir + viewDir);
     float spec = pow(max(dot(norm, halfwayDir), 0.0), 32.0);
