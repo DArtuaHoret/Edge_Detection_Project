@@ -57,7 +57,7 @@ class Texture:
             glBindTexture(GL_TEXTURE_2D, self.texture_id)
 
 
-#Klasa definiująca właściwości optyczne powierzchni obiektu 3D
+#Klasa definiująca właściwości wizualne powierzchni obiektu 3D
 class Material:
     def __init__(self, name):
         self.name = name
@@ -224,7 +224,7 @@ def load_obj_with_materials(obj_path, mtl_dir=None):
 
     return mesh
 
-#Generuje prosty sześcian. Służy jako mechanizm awaryjny w przypadku niepowodzenia ładowania modelu z pliku zewnętrznego.
+#Generuje prosty sześcian. Służy jako mechanizm awaryjny w przypadku niepowodzenia ładowania modelu z pliku zewnętrznego
 def make_fallback_cube():
     positions = np.array([
         # przód (+Z)
