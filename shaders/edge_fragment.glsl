@@ -8,11 +8,10 @@ uniform sampler2D u_depth_tex;
 uniform vec2 u_texel_size;        // 1.0 / rozdzielczosc bufora (do przesuwania sie po sasiadach)
 uniform float u_depth_threshold;  // prog czulosci dla glebokosci 
 uniform float u_normal_threshold; // prog czulosci dla normalnych
-uniform float u_near;             // near plane kamery 
-uniform float u_far;              // far plane kamery 
+uniform float u_near;             // bliska płaszczyzna kamery 
+uniform float u_far;              // daleka płaszczyzna kamery 
 
-//Przeliczenie na rzeczywista
-// odleglosc w jednostkach swiata 
+//Przeliczenie na rzeczywistą odległość w jednostkach świata 
 float linearize_depth(float raw_depth) {
     float ndc = raw_depth * 2.0 - 1.0;
     return (2.0 * u_near * u_far) / (u_far + u_near - ndc * (u_far - u_near));
