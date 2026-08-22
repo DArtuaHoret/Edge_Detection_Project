@@ -6,10 +6,10 @@ Okno jest jednak w trybie OPENGL gdzie nie ma normalnej powierzchni 2D do rysowa
 pygame_gui nie wie nic o OpenGL. 
 
 Co klatkę:
-1) czyscona ta powierzchnie (przezroczysta),
-2) mowimy pygame_gui zeby na niej narysowala swoje elementy,
-3) wysylano tą powierzchnie jako tekstura do OpenGL,
-4) rysuje się przezroczysty prostokat NA WIERZCHU sceny 3D.
+1) tworzymy przezroczystą powierzchnię,
+2) mowimy pygame_gui aby narysowała na niej swoje elementy (przyciski, suwaki)
+3) wysyłamy tą powierzchnię jako teksturę do OpenGL,
+4) rysuje się przezroczysty prostokąt z GUI na wierzchu sceny 3D.
 """
 import pygame
 import pygame_gui
