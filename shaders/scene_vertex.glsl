@@ -1,5 +1,7 @@
 #version 330 core
-//pobieranie potrzebnych atrybutow - pozycja (zrozumiec gdzie punkt) normalna (w jaka strone) i textura
+""" Shader wierzchołków normalnego renderowania. Przekształca wierzchołki obiektu oraz przekazuje do shadera 
+    fragmentów pozycję, normalną i współrzędne tekstury potrzebne do oświetlenia oraz teksturowania. """
+
 layout (location = 0) in vec3 aPos;
 layout (location = 1) in vec3 aNormal;
 layout (location = 2) in vec2 aTexCoord;
