@@ -1,3 +1,6 @@
+""" Shader fragmentów wykrywania krawędzi metodą Sobela. Analizuje wartości głębokości i normalnych
+    w sąsiednich pikselach, wykrywa gwałtowne zmiany tych danych i tworzy biały kontur."""
+
 #version 330 core
 
 in vec2 v_texcoord;
