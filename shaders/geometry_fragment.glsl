@@ -1,4 +1,4 @@
-""" Shader fragmentów pierwszego przebiegu renderowania. Zapisuje znormalizowane normalne do tekstury. """
+// Shader fragmentów pierwszego przebiegu renderowania. Zapisuje znormalizowane normalne do tekstury. 
 
 #version 330 core
 
