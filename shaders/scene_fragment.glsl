@@ -1,4 +1,4 @@
-""" Shader fragmentów normalnego renderowania. Implementuje tekstury oraz oblicza oświetlenie. """
+// Shader fragmentów normalnego renderowania. Implementuje tekstury oraz oblicza oświetlenie. 
 
 #version 330 core
 in vec3 v_Normal;
