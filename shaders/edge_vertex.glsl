@@ -1,3 +1,6 @@
+""" Shader wierzchołków wykrywanie krawędzi metodą Sobela. Przygotowuje pełnoekranowy prostokąt i przekazuje
+    współrzędne tekstury do shadera fragmentów, który wykonuje detekcję krawędzi."""
+
 #version 330 core
 
 layout(location = 0) in vec2 in_position;
