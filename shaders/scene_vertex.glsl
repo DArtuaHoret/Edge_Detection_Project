@@ -1,5 +1,5 @@
-"""Shader wierzchołków normalnego renderowania. Przekształca wierzchołki obiektu oraz przekazuje do shadera 
-   fragmentów pozycję, normalną i współrzędne tekstury potrzebne do oświetlenia oraz teksturowania."""
+// Shader wierzchołków normalnego renderowania. Przekształca wierzchołki obiektu oraz przekazuje do shadera 
+// fragmentów pozycję, normalną i współrzędne tekstury potrzebne do oświetlenia oraz teksturowania.
 
 #version 330 core
 
