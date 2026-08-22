@@ -1,8 +1,8 @@
 """
 Post-processing:
-- EdgeFramebuffer: zapisywane w pamięci normalne + glebokosc, do ktorych
-  renderujemy scene w Pass 1, zamiast bezpośrednio na ekran.
-- FullscreenQuad: płótno pokrywające caly ekran, na ktorym w Pass 3
+- EdgeFramebuffer: zapisywane w pamięci normalne + glębokość, do których
+  renderujemy scenę w Przebieg 1, zamiast bezpośrednio na ekran.
+- FullscreenQuad: płótno pokrywające caly ekran, na którym w Przebieg 3
   wykonuje się shader Sobela, czytając dane zapisane przez EdgeFramebuffer.
 
 """
@@ -12,12 +12,12 @@ from OpenGL.GL import *
 
 
 class EdgeFramebuffer:
-    """Framebuffer offscreen do pass geometrii.
+    """Framebuffer offscreen do przebiegu geometrii.
 
-    Renderujemy scenę nie na ekran, tylko do dwoch tekstur:
-      - normal_tex: normalna kazdego fragmentu w przestrzeni widoku
+    Renderujemy scenę nie na ekran, tylko do dwóch tekstur:
+      - normal_tex: normalna każdego fragmentu w przestrzeni widoku
         (view-space), zapisana wprost jako kolor.
-      - depth_tex: bufor glebokosci OpenGL, ale podpiety jako
+      - depth_tex: bufor glębokości OpenGL, ale podpięty jako
         tekstura do ODCZYTU.
     """
 
@@ -35,7 +35,7 @@ class EdgeFramebuffer:
         self.fbo = glGenFramebuffers(1)
         glBindFramebuffer(GL_FRAMEBUFFER, self.fbo)
 
-        # --- tekstura normalnych ---
+        # -- tekstura normalnych --
         self.normal_tex = glGenTextures(1)
         glBindTexture(GL_TEXTURE_2D, self.normal_tex)
         glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB16F, width, height, 0,
@@ -47,7 +47,7 @@ class EdgeFramebuffer:
         glFramebufferTexture2D(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0,
                                 GL_TEXTURE_2D, self.normal_tex, 0)
 
-        # --- tekstura glebokosci ---
+        # -- tekstura glębokości --
         self.depth_tex = glGenTextures(1)
         glBindTexture(GL_TEXTURE_2D, self.depth_tex)
         glTexImage2D(GL_TEXTURE_2D, 0, GL_DEPTH_COMPONENT24, width, height, 0,
@@ -100,7 +100,7 @@ class EdgeFramebuffer:
 
 
 class FullscreenQuad:
-    """Pelnoekranowy prostokat uzywany jako "plotno" do rysowania efektu post-processingu (Sobel)"""
+    """Pelnoekranowy prostokąt używany jako "płótno" do rysowania efektu post-processingu (Sobel)"""
 
     def __init__(self):
         vertices = np.array([
