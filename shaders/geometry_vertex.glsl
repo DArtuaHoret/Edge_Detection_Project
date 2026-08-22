@@ -1,5 +1,5 @@
-""" Shader wierzchołków pierwszego przebiegu renderowania. Przekształca wierzchołki do przestrzeni kamery
-    oraz przygotowuje normalne powierzchni do zapisania."""
+// Shader wierzchołków pierwszego przebiegu renderowania. Przekształca wierzchołki do przestrzeni kamery
+// oraz przygotowuje normalne powierzchni do zapisania.
 
 #version 330 core
 
